@@ -8,32 +8,32 @@ import { CreateDocenteDTO, UpdateDocenteDTO } from './dto'
 export class DocenteController {
 
   constructor(
-    private readonly docenteService: DocenteService
+    private readonly service: DocenteService
   ){}
     
   @Get()
   getList() {
-    return this.docenteService.findAll();
+    return this.service.findAll();
   }
 
   @Get(':id')
   findById(@Param('id', ParseIntPipe) id: number) {
-    return this.docenteService.findOneById(id)
+    return this.service.findOneById(id)
   }
 
   @Post()
-  create(@Body() createCDocenteDto: CreateDocenteDTO) {
-    return this.docenteService.create(createCDocenteDto)
+  create(@Body() dto: CreateDocenteDTO) {
+    return this.service.create(dto)
   }
 
   @Patch(':id')
-  update(@Param('id', ParseIntPipe) id: number, @Body() updateCDocenteDto: UpdateDocenteDTO) {
-    return this.docenteService.update(id, updateCDocenteDto)
+  update(@Param('id', ParseIntPipe) id: number, @Body() dto: UpdateDocenteDTO) {
+    return this.service.update(id, dto)
   }
 
   @Get(':id')
   delete(@Param('id', ParseIntPipe) id: number) {
-    return this.docenteService.delete(id)
+    return this.service.delete(id)
   }
 
 }

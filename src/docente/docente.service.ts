@@ -37,21 +37,21 @@ export class DocenteService {
     return registro
   }
 
-  create(createDocenteDTO: CreateDocenteDTO) {
+  create(dto: CreateDocenteDTO) {
     const id = this.registros.length
-    const registro: IDocente = { id, ...createDocenteDTO }
+    const registro: IDocente = { id, ...dto }
     this.registros.push(registro)
     return registro
   }
 
-  update(id: number, updateDocenteDTO: UpdateDocenteDTO) {
-    if (id && id !== updateDocenteDTO.id)
+  update(id: number, dto: UpdateDocenteDTO) {
+    if (id && id !== dto.id)
       throw new BadRequestException(`Invalid 'id' value!`)
 
     const registro = this.findOneById(id)
     this.registros = this.registros.map(item => {
       if (item.id === id)
-        return { ...registro, ...updateDocenteDTO, id}
+        return { ...registro, ...dto, id}
       return item
     })
 
